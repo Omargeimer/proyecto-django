@@ -1,0 +1,43 @@
+{% extends "inicio/encabezado.html" %}
+{% block titulo %} COMENTARIOS {% endblock%}
+
+{%block imagen%}
+	{%load static%} 
+	{%static 'inicio/images/home.png'%}
+{%endblock%}
+
+{%block modulo%}Principal{%endblock%}
+{%block encabezado%}
+	<h3>Comentarios</h3>
+	<small>Lista de Comentarios </small>
+{%endblock%}
+
+{% block contenido %}
+
+<table style="border-collapse: collapse; width: 100%; border: 1px solid #ddd;">
+    <thead style="background-color: #f2f2f2; border: 1px solid #ddd;">
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 8px;">Usuario</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Mensaje</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Eliminar</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Editar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for coment in coments %}
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">{{coment.usuario}}</td>
+            <td style="border: 1px solid #ddd; padding: 8px; color: #666;">{{coment.mensaje}}</td>
+            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">
+                <a href="{% url 'Eliminar' coment.id %}" style="text-decoration: none; color: #337ab7;">Eliminar</a>
+            </td>
+            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">
+                <a href="{% url 'Editar' coment.id %}" style="border: 1px solid #ddd; padding: 8px; color: #666;">Editar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
