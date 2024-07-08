@@ -15,7 +15,7 @@
 {% block contenido %}
 
 			<!-- Formulario -->
-			<form class="form-horizontal" action="{% url 'Editar' coment.id %}" method="POST" role="form">
+			<form class="form-horizontal" action="{% url 'Editar' coment.id%}" method="POST" role="form">
 				{%csrf_token%}
 	            <div class="panel panel-default">
 	                <div class="panel-body">

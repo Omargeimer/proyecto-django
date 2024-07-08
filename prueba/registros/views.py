@@ -32,11 +32,15 @@ def consultarComentarioIndividal (request, id):
 def editarComentarioContacto(request, id):
     comentario = get_object_or_404(ComentarioContacto, id=id)
     form = ComentarioContactoForm(request.POST, instance=comentario)
+    #Referenciamos que el elemento del formulario pertenece al comentario
+    # ya existente
     if form.is_valid():
-        form.save()
+        form.save() #si el registro ya existe, se modifica.
         comentarios=ComentarioContacto.objects.all()
-        return render(request,"registros/consultarContacto.html", {'coments':comentarios})
-    return render(request,"registros/editarContacto.html", {'coment':comentario})
+        return render(request,"registros/consultaContacto.html", {'coments':comentarios})
+    #Si el formulario no es valido nos regresa al formulario para verificar
+    #datos
+    return render(request,"registros/formEditarComentario.html",{'coment':comentario})
 
 
 def comentarios(request):
