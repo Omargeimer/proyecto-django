@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import datetime
 from .models import Alumnos
 from .models import ComentarioContacto
 from .forms import ComentarioContactoForm
@@ -55,3 +56,39 @@ def registros(request):
 def contacto(request):
     return render(request,"registros/contacto.html")
     #Indicamos el lugar donde se renderizará el resultado de esta vista
+
+def consultar1(request):
+    #con una sola condición
+    alumnos=Alumnos.objects.filter(carrera="TI")
+    return render(request,"registros/consultas.html",{'9B':alumnos})
+
+def consultar2(request):
+    #multiples condiciones adicionando .filter() se analiza #como AND
+    alumnos=Alumnos.objects.filter(carrera="TI").filter(turno="Matutino")
+    return render(request,"registros/consultas.html",{'9B':alumnos})
+
+def consultar3(request):
+    #Si solo deseamos recuperar ciertos datos agregamos la #función only,
+    #listando los campos que queremos obtener de #la consulta emplear
+    #filter() o #en el ejemplo all()
+    alumnos=Alumnos.objects.all().only("matricula", "nombre", "carrera", "turno", "imagen")
+    return render(request,"registros/consultas.html",{'9B':alumnos})
+
+def consultar4(request):
+    alumnos=Alumnos.objects.filter(turno__contains="Vesp")
+    return render(request,"registros/consultas.html",{'9B':alumnos})
+
+def consultar5(request):
+    alumnos=Alumnos.objects.filter(nombre__in=["Juan", "Ana"])
+    return render(request,"registros/consultas.html",{'9B':alumnos})
+
+def consultar6(request):
+    fechaInicio = datetime.date(2024, 7, 1)
+    fechaFin = datetime.date(2024, 7, 16)
+    alumnos=Alumnos.objects.filter(created__range=(fechaInicio,fechaFin))
+    return render(request,"registros/consultas.html",{'9B':alumnos})
+
+def consultar7(request):
+    #Consultando entre modelos
+    alumnos=Alumnos.objects.filter(comentario__coment__contains='No inscrito')
+    return render(request,"registros/consultas.html",{'9B':alumnos})

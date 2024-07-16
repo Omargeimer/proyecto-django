@@ -18,6 +18,13 @@ urlpatterns = [
     path('formEditarContacto/<int:id>/', views_registros.consultarComentarioIndividal, name="ConsultaIndividual"),
     path('editarContacto/<int:id>/', views_registros.editarComentarioContacto, name="Editar"),
     path('eliminarComentario/<int:id>/',views_registros.eliminarComentarioContacto,name='Eliminar'),
+    path('consultas',views_registros.consultar1,name="Consultas"),
+    path('consultas2',views_registros.consultar2,name="Consultas2"),
+    path('consultas3',views_registros.consultar3,name="Consultas3"),
+    path('consultas4',views_registros.consultar4,name="Consulta4"),
+    path('consultas5',views_registros.consultar5,name="Consulta5"),
+    path('consultas6',views_registros.consultar6,name="Consulta6"),
+    path('consultas7',views_registros.consultar7,name="Consulta7"),
 ]
 
 if settings.DEBUG:
