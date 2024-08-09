@@ -92,3 +92,7 @@ def consultar7(request):
     #Consultando entre modelos
     alumnos=Alumnos.objects.filter(comentario__coment__contains='No inscrito')
     return render(request,"registros/consultas.html",{'9B':alumnos})
+
+def consultasSQL(request):
+    alumnos=Alumnos.objects.raw('SELECT id, matricula,nombre, carrera, turno, imagen FROM registros_alumnos WHERE carrera="TI" ORDER BY turno DESC')
+    return render(request,"registros/consultas.html",{'9B':alumnos})

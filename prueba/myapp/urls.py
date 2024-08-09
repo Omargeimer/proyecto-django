@@ -25,6 +25,7 @@ urlpatterns = [
     path('consultas5',views_registros.consultar5,name="Consulta5"),
     path('consultas6',views_registros.consultar6,name="Consulta6"),
     path('consultas7',views_registros.consultar7,name="Consulta7"),
+    path('consultasSQL',views_registros.consultasSQL,name="sql"),
 ]
 
 if settings.DEBUG:
